@@ -1,7 +1,8 @@
-function prod(route, verb, payload) {
+function call(route, verb, payload) {
     return {
         id: 1234,
-        content: "hi!"
+        content: "hi!",
+        status: 503
     }
 }
 
@@ -12,12 +13,14 @@ function check(message, fn) {
             console.log(`✅ Healthy: ${message}`)
         }
         catch (error) {
-            console.log(`⛔️ Unhealthy: ${message} — ${error.message}`)
+            // console.log(error)
+            const errorMessage = typeof (error) === "string" ? error : error.message
+            console.log(`⛔️ Unhealthy: ${message} — ${errorMessage}`)
         }
     }
 
 }
 
 module.exports = {
-    prod, check
+    call, check
 }
