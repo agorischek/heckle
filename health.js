@@ -1,4 +1,6 @@
-const checks = require('./checks')
+const config = require('./checks')
+
+const checks = config.checks
 
 Object.keys(checks).forEach(id => {
     checks[id]();

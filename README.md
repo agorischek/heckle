@@ -14,11 +14,36 @@ export const checks = {
 }
 ```
 
+Checks can be nested, and the nesting will be reflected in the URL structure:
+
+```js
+checks: {
+    fetch: {
+        product: check("Database product read availability", () => {
+            const reply = call("results/products/1234")
+            expect(reply.id).to.eq(1234, "Wrong product ID returned")
+        }),
+        seller: check("Database seller read availability", () => {
+            const reply = call("results/seller/456")
+            expect(reply.id).to.eq(456, "Wrong seller ID returned")
+        })
+    }
+}
+```
+
 Your checks file defines a set of named checks. These checks can do whatever you like, but the recommended use is to invoke the service's own production HTTP endpoints. Heckle provides a utility function `call` for this purpose. You pass it the relative path of the endpoint, and optionally an HTTP verb (default is `GET`), as well as optionally a payload.
 
 ```js
 const reply = await call("results/1234")
 expect(reply.id).to.be(1234)
+```
+
+To avoid verbose and repetitive status code assertions in every check, Heckls provides the `ensure()` utility function. If the result of `call()` doesn't match the expect status code or class, `ensure()` will throw.
+
+
+```js
+const reply = await call("results/1234");
+ensure(reply).successful();
 ```
 
 Heckle checks work similar to unit tests: If they throw an error, something's wrong; if they don't, everything's ok. That means, in the simplest case, you can throw any error you like:
