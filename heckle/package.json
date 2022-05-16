@@ -1,0 +1,14 @@
+{
+  "name": "heckle",
+  "version": "0.0.1",
+  "description": "Health check framework",
+  "main": "heckle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Gorischek",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
