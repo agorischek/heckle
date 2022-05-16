@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": ["get"],
-      "route": "_health/{**check}"
+      "route": "_health/{**operation}"
     },
     {
       "type": "http",
