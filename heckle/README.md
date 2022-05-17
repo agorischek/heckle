@@ -2,7 +2,7 @@
 
 Heckle is service check framework that lets you verify the health of your application in production like you verify its correctness with unit tests during development.
 
-_v. To persistently annoy a performer_
+_v. To persistently pester a performer_
 
 ## Checks
 

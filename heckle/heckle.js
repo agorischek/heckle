@@ -41,11 +41,6 @@ function summarizeResults(results) {
   return [successes, errors];
 }
 
-async function azureFunctionsHost(context, config) {
-  const result = await run(context.bindingData.operation, config);
-  return result;
-}
-
 async function run(operation, config) {
   const operationSegments = operation?.split("/");
 
