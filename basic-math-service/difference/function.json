@@ -1,4 +1,5 @@
 {
+  "scriptFile": "./difference.js",
   "bindings": [
     {
       "authLevel": "function",

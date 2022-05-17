@@ -1,4 +1,6 @@
 {
+  "scriptFile": "./quotient.js",
+
   "bindings": [
     {
       "authLevel": "function",

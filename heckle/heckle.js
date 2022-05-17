@@ -41,8 +41,15 @@ function summarizeResults(results) {
   return [successes, errors];
 }
 
-async function run(operation, checks) {
+async function azureFunctionsHost(context, config) {
+  const result = await run(context.bindingData.operation, config);
+  return result;
+}
+
+async function run(operation, config) {
   const operationSegments = operation?.split("/");
+
+  const checks = config.checks;
 
   const action =
     operationSegments?.[0] === "ping"
@@ -147,6 +154,7 @@ function check(description, fn) {
 }
 
 module.exports = {
+  azureFunctionsHost,
   call,
   check,
   ensure,

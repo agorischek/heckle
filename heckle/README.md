@@ -1,6 +1,8 @@
 # Heckle
 
-Service health check framework
+Heckle is service check framework that lets you verify the health of your application in production like you verify its correctness with unit tests during development.
+
+_v. To persistently annoy a performer_
 
 ## Checks
 
@@ -58,6 +60,20 @@ However, it also means you can use any assertion library you like, including the
 expect(reply.status).not.to.equal(503, "DATABASE_UNAVAILABLE")
 ```
 Heckle will catch these errors and report them as failures.
+
+Heckle can be run locally via CLI. Just pass it either a relative path to your config file, or the URL of a health endpoint.
+
+```sh
+heckle ./checks.js --check product
+```
+
+A specific check to run can be passed via optional parameter.
+
+```sh
+heckle http://localhost/_health --check product
+```
+
+
 
 # Components
 

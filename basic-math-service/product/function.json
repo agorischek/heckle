@@ -1,4 +1,5 @@
 {
+  "scriptFile": "./product.js",
   "bindings": [
     {
       "authLevel": "function",
