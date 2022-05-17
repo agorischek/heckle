@@ -41,8 +41,8 @@ function summarizeResults(results) {
   return [successes, errors];
 }
 
-async function run(operation, config) {
-  const operationSegments = operation?.split("/");
+async function run(config, operation) {
+  const operationSegments = operation ? operation?.split("/") : [];
 
   const checks = config.checks;
 
@@ -70,15 +70,15 @@ async function run(operation, config) {
   const status = healthy ? 200 : 500;
 
   const result = {
-    status: status,
-    body: {
-      healthy: healthy,
-      // check: check,
-      // verified: successes,
-      errors: healthy ? undefined : errors,
-      ping: action === "ping" ? ping : undefined,
-      checks: results,
-    },
+    // status: status,
+    // body: {
+    healthy: healthy,
+    // check: check,
+    // verified: successes,
+    errors: healthy ? undefined : errors,
+    ping: action === "ping" ? ping : undefined,
+    checks: results,
+    // },
   };
 
   return result;
@@ -149,7 +149,6 @@ function check(description, fn) {
 }
 
 module.exports = {
-  azureFunctionsHost,
   call,
   check,
   ensure,

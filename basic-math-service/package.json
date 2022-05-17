@@ -3,7 +3,8 @@
   "version": "",
   "description": "",
   "scripts": {
-    "start": "func start"
+    "start": "func start",
+    "health": "heckle ../basic-math-service/health/checks.js"
   },
   "author": "",
   "dependencies": {
