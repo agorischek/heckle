@@ -1,5 +1,15 @@
 const axios = require("axios");
 
+const { cosmiconfig } = require("cosmiconfig");
+
+async function loadConfig() {
+  const searchPlaces = [`checks.config.js`, `$checks.config.cjs`];
+  const explorer = cosmiconfig("checks", { searchPlaces });
+  const result = await explorer.search();
+  // console.log(result);
+  return result;
+}
+
 async function performChecks(checks, checkId) {
   const results = {};
 
@@ -41,10 +51,11 @@ function summarizeResults(results) {
   return [successes, errors];
 }
 
-async function run(config, operation) {
+async function run(operation) {
   const operationSegments = operation ? operation?.split("/") : [];
 
-  const checks = config.checks;
+  const { config, filepath } = await loadConfig();
+  const { checks, root } = config;
 
   const action =
     operationSegments?.[0] === "ping"
@@ -85,15 +96,10 @@ async function run(config, operation) {
 }
 
 async function call(route, verb, payload) {
-  const response = await axios.get(route);
-  // console.log(response)
+  const { config } = await loadConfig();
+  const target = config.root ? `${config.root}${route}` : route;
+  const response = await axios.get(target);
   return response;
-  // return {
-  //   id: 1234,
-  //   content: "hi!",
-  //   body: 3,
-  //   status: 200
-  // }
 }
 
 class HealthError extends Error {
@@ -153,6 +159,7 @@ module.exports = {
   check,
   ensure,
   HealthError,
+  loadConfig,
   run,
   verify,
 };

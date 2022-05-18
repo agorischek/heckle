@@ -4,14 +4,22 @@ const { program } = require("commander");
 
 const chalk = require("chalk");
 
-const { run } = require("./heckle");
+const { run, loadConfig } = require("./heckle");
 
-program.argument("<target>").action(async (target, options) => {
+// program.argument("<target>").action(async (target, options) => {
+
+program.argument("[target]").action(async (target, options) => {
   // console.log("The target is " + target);
-  const config = require(target);
+  // const config = require(target);
   // console.log(config);
   // console.log("Checking health...");
-  const result = await run(config);
+  const { config } = await loadConfig();
+
+  console.log();
+  console.log(chalk.bold(`${config.name} Health Check`));
+  console.log();
+
+  const result = await run();
   // console.log(result);
   // if (result.healthy) console.log("✅ Healthy");
   // else console.log("⛔️ Unhealthy");
@@ -32,7 +40,9 @@ program.argument("<target>").action(async (target, options) => {
     const checkResult = result.checks[check];
     if (checkResult.healthy)
       console.log(
-        `${chalk.hex(hex.good).bold("✔")} ${checkResult.description}`
+        `${chalk.hex(hex.good).bold("✔")} ${
+          checkResult.description
+        } ${chalk.gray(`(${check})`)}`
       );
   });
   console.log();
@@ -40,8 +50,13 @@ program.argument("<target>").action(async (target, options) => {
   Object.keys(result.checks).forEach((check) => {
     const checkResult = result.checks[check];
     if (!checkResult.healthy)
-      console.log(`${chalk.hex(hex.bad).bold("×")} ${checkResult.error}`);
+      console.log(
+        `${chalk.hex(hex.bad).bold("×")} ${checkResult.error} ${chalk.gray(
+          `(${check})`
+        )}`
+      );
   });
+  console.log();
 });
 
 program.parse();
