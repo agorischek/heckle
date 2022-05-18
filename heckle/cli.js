@@ -46,7 +46,7 @@ program
 
     // console.log(summary);
     if (summary.unhealthy.count === 0) {
-      console.log(chalk.green.bold(`All ${summary.count} checks passed!`));
+      console.log(chalk.green.bold(`All ${summary.count} checks passed`));
     } else if (summary.unhealthy.count === summary.count) {
       console.log(chalk.red.bold(`All ${summary.count} checks failed`));
     } else {
@@ -58,30 +58,33 @@ program
     }
     console.log();
 
-    console.log(chalk.white.bold.bgHex(hex.good)(" HEALTHY "));
+    if (summary.healthy.count > 0) {
+      console.log(chalk.white.bold.bgGreen(" HEALTHY "));
 
-    Object.keys(summary.healthy.checks).forEach((check) => {
-      const checkResult = summary.healthy.checks[check];
-      console.log(
-        `${chalk.hex(hex.good).bold("✔")} ${
-          checkResult.description
-        } ${chalk.gray(`(${check})`)}`
-      );
-    });
-    console.log();
+      Object.keys(summary.healthy.checks).forEach((check) => {
+        const checkResult = summary.healthy.checks[check];
+        console.log(
+          `${chalk.green.bold("✔")} ${checkResult.description} ${chalk.gray(
+            `(${check})`
+          )}`
+        );
+      });
+      console.log();
+    }
+    if (summary.unhealthy.count > 0) {
+      console.log(chalk.white.bold.bgRed(" UNHEALTHY "));
 
-    console.log(chalk.white.bold.bgHex(hex.bad)(" UNHEALTHY "));
+      Object.keys(summary.unhealthy.checks).forEach((check) => {
+        const checkResult = summary.unhealthy.checks[check];
 
-    Object.keys(summary.unhealthy.checks).forEach((check) => {
-      const checkResult = summary.unhealthy.checks[check];
-
-      console.log(
-        `${chalk.hex(hex.bad).bold("×")} ${checkResult.error} ${chalk.gray(
-          `(${check})`
-        )}`
-      );
-    });
-    console.log();
+        console.log(
+          `${chalk.red.bold("×")} ${checkResult.error} ${chalk.gray(
+            `(${check})`
+          )}`
+        );
+      });
+      console.log();
+    }
   });
 
 program.parse();
