@@ -6,7 +6,6 @@ async function loadConfig() {
   const searchPlaces = [`checks.config.js`, `$checks.config.cjs`];
   const explorer = cosmiconfig("checks", { searchPlaces });
   const result = await explorer.search();
-  // console.log(result);
   return result;
 }
 
@@ -51,7 +50,25 @@ function summarizeResults(results) {
   return [successes, errors];
 }
 
-async function run(operation) {
+async function run(operation, target) {
+  const result = target
+    ? await runRemote(operation, target)
+    : await runLocal(operation);
+  return result;
+}
+
+async function runRemote(operation, target) {
+  let result;
+  try {
+    const response = await axios.get(target);
+    result = response.data;
+  } catch (e) {
+    result = e.response.data;
+  }
+  return result;
+}
+
+async function runLocal(operation) {
   const operationSegments = operation ? operation?.split("/") : [];
 
   const { config, filepath } = await loadConfig();

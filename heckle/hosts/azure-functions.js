@@ -1,9 +1,11 @@
-const { run } = require("../heckle");
+const { run, loadConfig } = require("../heckle");
 
-async function checkHealth(context, config) {
+async function checkHealth(context) {
   const result = await run(context.bindingData.operation);
 
-  const status = healthy
+  const { config } = await loadConfig();
+
+  const status = result.healthy
     ? config.codes.healthy || 200
     : config.codes.unhealthy || 500;
 

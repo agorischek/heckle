@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "func start",
-    "health": "heckle ../basic-math-service/checks.config.js"
+    "health": "heckle http://localhost:7071/_health"
   },
   "author": "",
   "dependencies": {
