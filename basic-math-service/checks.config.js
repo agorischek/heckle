@@ -10,5 +10,5 @@ module.exports = {
     healthy: 200,
     unhealthy: 500,
   },
-  checks: { product, sum, difference, quotient },
+  checks: { difference, product, quotient, sum },
 };
