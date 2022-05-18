@@ -19,6 +19,12 @@ program
 
     const result = await run(operation, target);
 
+    if (!result) {
+      console.error(chalk.red("Service not found"));
+      console.log();
+      process.exit(1);
+    }
+
     const hex = {
       good: "#0dd332",
       bad: "#d30d1c",

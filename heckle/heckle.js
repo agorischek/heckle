@@ -63,7 +63,8 @@ async function runRemote(operation, target) {
     const response = await axios.get(target);
     result = response.data;
   } catch (e) {
-    result = e.response.data;
+    // console.log(e);
+    result = e.response?.data;
   }
   return result;
 }
