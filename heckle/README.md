@@ -58,11 +58,22 @@ const reply = await call("results/invalid-result-id!")
 ensure(reply).clientError()
 ```
 
-# Health Endpoint
+If you want to use an assertion library, but also want to directly control your errors, you can use `try`/`catch`:
+
+```js
+const reply = await call("results/2345")
+try{
+    expect(reply.data.id).toBe(2345)
+} catch (e) {
+    throw new Error(`My error message: ${e.message}`)
+}
+```
+
+## Health Endpoint
 
 Unlike unit tests, which are executed directly in your development environment, Heckle checks are exposed via an HTTP endpoint. This endpoint can be called wherever your application is running, including locally on a development machine, on a build server, in a test environment, or in production. This endpoint typically has the word "health" in it, such as
 
-```
+```url
 https://my-cool-service.example.com/_health
 ```
 
@@ -91,6 +102,8 @@ export const checks = {
     }
 }
 ```
+
+Because any code running in production is potentially dangerous, Heckle does not autodiscover checks that way that unit testing frameworks discover tests. Instead, once a check is ready to use, you must explicitly configure how it's exposed.
 
 Checks can be nested, and the nesting will be reflected in the URL structure:
 
@@ -163,3 +176,17 @@ Host SDKs provide adapters specific to different app service hosts, such as Azur
 ## CLI
 
 The CLI lets you check the health of your services, both while running locally during development, and in production.
+
+## Q&A
+
+### Do health checks replace my unit tests?
+
+Definitely not! Health checks require booting your application. Unit tests should run directly against your source or your build output. Both are valuable and complementary quality assurance strategies.
+
+### Do health checks replace monitoring user traffic?
+
+Nope! Users will always find ways to interact with your service that you didn't expect. Health checks can provide an early warning signal, but they don't replace monitoring real usage.
+
+### Isn't running tests in production dangerous?
+
+Depends on what they do! Checks are completely in your control, and it's your responsibility to make sure they're safe. For example, you should be careful to ensure they don't add undue traffic load and don't corrupt production data.
