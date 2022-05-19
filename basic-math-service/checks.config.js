@@ -5,7 +5,7 @@ const quotient = require("./quotient/quotient.check.js");
 
 module.exports = {
   name: "Basic Math Service",
-  root: process.env.SELF_URL,
+  root: process.env.SELF_URL || "http://localhost:7071/",
   params: {
     code: process.env.SELF_KEY,
   },

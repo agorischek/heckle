@@ -118,7 +118,7 @@ async function call(route, verb, payload) {
   const base = config.root ? `${config.root}${route}` : route;
   const url = new URL(base);
   Object.keys(config.params).forEach((param) => {
-    if (!url.searchParams.get(param))
+    if (config.params[param] && !url.searchParams.has(param))
       url.searchParams.set(param, config.params[param]);
   });
   const target = url.toString();

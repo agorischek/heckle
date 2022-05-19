@@ -4,17 +4,28 @@ const { program } = require("commander");
 
 const chalk = require("chalk");
 
-const { run, loadConfig } = require("./heckle");
+const { cosmiconfig } = require("cosmiconfig");
+
+const { run } = require("./heckle");
 
 program
-  .argument("[target]")
   .argument("[operation]")
-  .action(async (target, operation, options) => {
-    const { config, filePath } = await loadConfig();
+  .argument("[target]")
+  .action(async (operation, cliTarget, options) => {
+    const explorer = cosmiconfig("heckle");
+    const { config } = await explorer.search();
+
+    const target = cliTarget || config.target;
+
+    if (!target) {
+      console.error("No target found!");
+      process.exit(1);
+    }
+
+    const displayTarget = target.match(/^([^\?]*)/)[1];
 
     console.log();
-    console.log(chalk.bold(`${config.name} Health Check`));
-    if (target) console.log(chalk.gray(target));
+    console.log(`${chalk.bold(`Health Check:`)} ${chalk.gray(displayTarget)}`);
     console.log();
 
     const result = await run(operation, target);
