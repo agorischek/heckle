@@ -115,7 +115,14 @@ async function runLocal(operation) {
 
 async function call(route, verb, payload) {
   const { config } = await loadConfig();
-  const target = config.root ? `${config.root}${route}` : route;
+  const base = config.root ? `${config.root}${route}` : route;
+  const url = new URL(base);
+  Object.keys(config.params).forEach((param) => {
+    if (!url.searchParams.get(param))
+      url.searchParams.set(param, config.params[param]);
+  });
+  const target = url.toString();
+  console.log(target);
   const response = await axios.get(target);
   return response;
 }
