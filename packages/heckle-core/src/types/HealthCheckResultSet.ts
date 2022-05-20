@@ -1,5 +1,5 @@
 import { HealthCheckResult } from './HealthCheckResult';
 
 export type HealthCheckResultSet = {
-  [key: string]: HealthCheckResultSet | HealthCheckResult;
+  [key: string]: HealthCheckResult;
 };

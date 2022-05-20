@@ -3,3 +3,4 @@ export * from './HealthCheckFunction';
 export * from './HealthCheckResult';
 export * from './HealthCheckResultSet';
 export * from './HealthCheckSuite';
+export * from './HealthSummary';
