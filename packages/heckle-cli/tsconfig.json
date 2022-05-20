@@ -6,5 +6,6 @@
     "composite": true
   },
   "references": [{ "path": "../heckle-core" }],
-  "files": ["src/index.ts"]
+  "files": ["src/index.ts"],
+  "include": ["src"]
 }

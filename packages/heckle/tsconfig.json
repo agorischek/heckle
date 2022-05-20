@@ -10,5 +10,6 @@
     { "path": "../heckle-core" },
     { "path": "../heckle-hosts" }
   ],
-  "files": ["src/index.ts"]
+  "files": ["src/index.ts"],
+  "include": ["src"]
 }
