@@ -1,5 +1,5 @@
 {
-  "name": "heckle",
+  "name": "heckle-core",
   "version": "0.0.1",
   "description": "Core functionality for Heckle",
   "main": "dist/index.js",
