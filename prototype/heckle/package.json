@@ -1,5 +1,5 @@
 {
-  "name": "heckle",
+  "name": "heckle-prototype",
   "version": "0.0.1",
   "description": "Health check framework",
   "main": "heckle.js",
