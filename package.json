@@ -1,0 +1,9 @@
+{
+  "name": "heckle-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Heckle monorepo",
+  "main": "index.js",
+  "author": "Alex Gorischek",
+  "license": "MIT"
+}

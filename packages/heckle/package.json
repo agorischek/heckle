@@ -1,0 +1,14 @@
+{
+  "name": "heckle",
+  "version": "0.0.1",
+  "description": "Simple service health checks",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Alex Gorischek",
+  "license": "MIT",
+  "workspaces": [
+    "packages/heckle"
+  ]
+}

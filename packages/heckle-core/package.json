@@ -1,0 +1,11 @@
+{
+  "name": "heckle",
+  "version": "0.0.1",
+  "description": "Core functionality for Heckle",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Alex Gorischek",
+  "license": "MIT"
+}

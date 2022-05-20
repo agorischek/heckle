@@ -1,0 +1,11 @@
+{
+  "name": "heckle-cli",
+  "version": "0.0.1",
+  "description": "CLI for Heckle",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Alex Gorischek",
+  "license": "MIT"
+}
