@@ -9,5 +9,9 @@
     "test": "jest --config ../../jest.config.js"
   },
   "author": "Alex Gorischek",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.2.0"
+  }
 }
