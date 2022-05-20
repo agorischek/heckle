@@ -4,6 +4,8 @@
   "description": "Simple service health checks",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
+    "lint": "eslint .",
     "test": "jest"
   },
   "author": "Alex Gorischek",

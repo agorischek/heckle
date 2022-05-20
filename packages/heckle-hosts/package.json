@@ -4,6 +4,8 @@
   "description": "Service host adapters for Heckle",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
+    "lint": "eslint .",
     "test": "jest"
   },
   "author": "Alex Gorischek",
