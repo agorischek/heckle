@@ -1,12 +1,12 @@
 import { HealthCheckResultSet, HealthCheckSuite } from './types';
 
-export async function evaluate(suite: HealthCheckSuite, name?: string) {
-  const names: string[] = name ? [name] : Object.keys(suite);
+export async function evaluate(suite: HealthCheckSuite, id?: string) {
+  const ids: string[] = id ? [id] : Object.keys(suite);
 
   const results: HealthCheckResultSet = {};
-  for await (const name of names) {
-    const result = await suite[name]();
-    results[name] = result;
+  for await (const id of ids) {
+    const result = await suite[id]();
+    results[id] = result;
   }
 
   return results;
