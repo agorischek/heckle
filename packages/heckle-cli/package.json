@@ -4,7 +4,7 @@
   "description": "CLI for Heckle",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --build",
     "lint": "eslint .",
     "test": "jest --config ../../jest.config.js"
   },
