@@ -6,7 +6,7 @@ import {
 
 export function summarize(
   results: HealthCheckResultSet,
-  service: string
+  service?: string
 ): HealthSummary {
   function extractErrors(acc: string[], result: HealthCheckResult) {
     return result.error && acc.indexOf(result.error) < 0

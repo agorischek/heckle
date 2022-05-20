@@ -1,3 +1,5 @@
+export * from './Action';
+export * from './Config';
 export * from './HealthCheck';
 export * from './HealthCheckFunction';
 export * from './HealthCheckResult';
