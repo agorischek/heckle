@@ -1,4 +1,4 @@
-import { Target } from 'heckle-core';
+import { Target } from '@heckle/core';
 
 export type RunConfig = {
   targets: {

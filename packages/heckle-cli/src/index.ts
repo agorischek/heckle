@@ -3,7 +3,16 @@
 import { program } from 'commander';
 
 import { run } from './run';
+import { exit } from './utils';
 
-program.argument('name').action(run);
+async function main(name: string) {
+  try {
+    await run(name);
+  } catch (error) {
+    exit(error);
+  }
+}
 
-program.parse();
+program.argument('name').action(main);
+
+program.parseAsync();

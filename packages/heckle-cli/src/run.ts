@@ -1,29 +1,29 @@
 import chalk from 'chalk';
 import { cosmiconfig } from 'cosmiconfig';
 
-import { health, provoke, Target } from 'heckle-core';
+import { health, provoke, Target, HealthSummary } from '@heckle/core';
 import { printIntro, printReport } from './printers';
-import { RunConfig } from './types';
-import { HealthSummary, TargetConfig } from 'heckle-core/src/types';
 import { HealthReport } from './types/HealthReport';
+import { isValidRunConfig } from './schemas';
+import { loading } from './utils';
 
 export async function run(name: string) {
-  const explorer = cosmiconfig('heckle');
-  const c = await explorer.search();
-  const config = c?.config as RunConfig;
+  const runConfigFinder = cosmiconfig('heckle');
+  const runConfigFinderResult = await runConfigFinder.search();
+  const loadedConfig = runConfigFinderResult?.config;
+  const config = isValidRunConfig(loadedConfig) ? loadedConfig : undefined;
+  if (!config) throw new Error("Couldn't find valid config!");
 
-  const t = config?.targets?.[name] as TargetConfig;
+  const targetConfig = config.targets[name];
+  const target = new Target(targetConfig);
 
-  const target = new Target(t);
   const operation = undefined;
 
-  if (!target) {
-    console.error(`Target "${name}" not found!`);
-    console.log();
-    process.exit(1);
-  }
+  if (!target) throw new Error(`Target "${name}" not found!`);
 
   printIntro(target);
+
+  const spinner = loading('Running health checks...');
 
   const reponse = await target.provoke(operation);
   const summary = reponse as unknown as HealthSummary;
@@ -36,5 +36,6 @@ export async function run(name: string) {
 
   const report = new HealthReport(summary);
 
+  spinner.stop();
   printReport(report);
 }
