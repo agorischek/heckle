@@ -6,3 +6,4 @@ export * from './HealthCheckResult';
 export * from './HealthCheckResultSet';
 export * from './HealthCheckSuite';
 export * from './HealthSummary';
+export * from './TargetConfig';

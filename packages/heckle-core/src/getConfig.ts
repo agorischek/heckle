@@ -5,6 +5,6 @@ export async function getConfig(): Promise<Config> {
   const searchPlaces = [`checks.config.js`, `checks.config.cjs`];
   const explorer = cosmiconfig('checks', { searchPlaces });
   const result = await explorer.search();
-  if (!result?.config) throw 'No config round';
+  if (!result?.config) throw 'No config found';
   return result.config;
 }

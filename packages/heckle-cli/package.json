@@ -1,11 +1,12 @@
 {
-  "name": "heckle-cli",
+  "name": "@heckle/cli",
   "version": "0.0.1",
   "description": "CLI for Heckle",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc --build",
     "lint": "eslint .",
+    "start": "npx ts-node ./src/index.ts",
     "test": "jest --config ../../jest.config.js"
   },
   "author": "Alex Gorischek",

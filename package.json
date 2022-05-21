@@ -9,6 +9,7 @@
   "scripts": {
     "build": "npm run build --workspace packages/heckle",
     "lint": "npm run lint --workspaces --if-present",
+    "publish:dry": "npm publish --workspaces --dry-run",
     "test": "npm run test --workspaces --if-present"
   },
   "workspaces": [

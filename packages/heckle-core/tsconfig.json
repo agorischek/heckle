@@ -6,5 +6,5 @@
     "composite": true
   },
   "files": ["src/index.ts"],
-  "include": ["src"]
+  "include": ["src", "src/secrets.json"]
 }

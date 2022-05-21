@@ -1,5 +1,5 @@
 {
-  "name": "heckle-core",
+  "name": "@heckle/core",
   "version": "0.0.1",
   "description": "Core functionality for Heckle",
   "main": "dist/index.js",
@@ -11,6 +11,7 @@
   "author": "Alex Gorischek",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.27.2",
     "cosmiconfig": "^7.0.1"
   },
   "devDependencies": {
