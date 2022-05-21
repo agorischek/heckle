@@ -9,5 +9,8 @@
     "test": "jest --config ../../jest.config.js"
   },
   "author": "Alex Gorischek",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@azure/functions": "^3.0.0"
+  }
 }
