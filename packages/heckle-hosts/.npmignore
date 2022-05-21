@@ -1,0 +1,9 @@
+src
+coverage
+.depcheckrc
+.eslintignore
+.eslintrc.js
+.github
+tsconfig.build.json
+tsconfig.json
+tsconfig.tsbuildinfo

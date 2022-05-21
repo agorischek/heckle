@@ -1,3 +1,1 @@
-import { check, health } from '@heckle/core';
-
-export { check, health };
+export { call, check, ensure, health } from '@heckle/core';

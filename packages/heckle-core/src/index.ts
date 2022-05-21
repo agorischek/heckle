@@ -1,5 +1,7 @@
+export * from './call';
 export * from './check';
+export * from './ensure';
 export * from './health';
 export * from './Target';
-export * from './provoke';
+
 export { HealthSummary } from './types';
