@@ -1,7 +1,6 @@
-import chalk from 'chalk';
 import { cosmiconfig } from 'cosmiconfig';
 
-import { Target, HealthSummary } from '@heckle/core';
+import { Target } from '@heckle/core';
 
 import { printIntro, printReport } from './printers';
 import { HealthReport } from './types';

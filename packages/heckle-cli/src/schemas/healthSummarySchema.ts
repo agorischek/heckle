@@ -6,7 +6,7 @@ const { array, boolean, object, string } = Joi.types();
 
 export const healthSummarySchema = object.keys({
   name: string,
-  health: boolean,
+  healthy: boolean,
   errors: array.items(string),
   checks: object.pattern(
     string,
