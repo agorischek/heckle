@@ -1,10 +1,10 @@
 import ora from 'ora';
 import chalk from 'chalk';
 
-export function loading(message: string) {
+export function spinner(message?: string) {
   return ora({
-    text: chalk.gray(message),
+    text: chalk.gray(message || 'Running...'),
     spinner: 'dots8',
     color: 'gray',
-  }).start();
+  });
 }

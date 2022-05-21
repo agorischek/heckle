@@ -9,6 +9,9 @@
     "start": "npx ts-node -r tsconfig-paths/register ./src/index.ts",
     "test": "jest --config ../../jest.config.js"
   },
+  "bin": {
+    "heckle": "dist/index.js"
+  },
   "author": "Alex Gorischek",
   "license": "MIT",
   "dependencies": {

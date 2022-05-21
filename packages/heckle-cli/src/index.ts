@@ -3,12 +3,15 @@
 import { program } from 'commander';
 
 import { run } from './run';
-import { exit } from './utils';
+import { exit, spinner } from './utils';
+
+const loading = spinner();
 
 async function main(name: string) {
   try {
-    await run(name);
+    await run(name, loading);
   } catch (error) {
+    loading.stop();
     exit(error);
   }
 }
