@@ -14,13 +14,19 @@ export class Target {
   };
 
   constructor(config: TargetConfig) {
-    this.endpoint = typeof config === 'string' ? config : config.endpoint;
+    if (typeof config === 'string') {
+      this.endpoint = config;
+    } else {
+      this.name = config.name;
+      this.endpoint = config.endpoint;
+      this.params = config.params;
+      this.headers = config.headers;
+    }
     this.displayEndpoint = this.endpoint.match(/^([^?]*)/)?.[1];
   }
 
   async provoke(action?: string, id?: string) {
     const url = this.buildUrl(action, id);
-
     const retort = await axios.get(url, {
       validateStatus: function (status: number) {
         return Boolean(status);
@@ -46,7 +52,6 @@ export class Target {
           url.searchParams.set(param, this.params[param]);
       });
     }
-
     return url.toString();
   }
 }
