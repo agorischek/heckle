@@ -3,3 +3,4 @@ dist
 *.tsbuildinfo
 secrets.json
 .hecklerc
+.DS_Store

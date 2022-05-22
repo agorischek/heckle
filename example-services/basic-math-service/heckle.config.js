@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const secrets = require('../../secrets.json');
+const secrets = require('./secrets.json');
 
 module.exports = {
   targets: {
