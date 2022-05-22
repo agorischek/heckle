@@ -1,6 +1,6 @@
 {
   "name": "@heckle/cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "CLI for Heckle",
   "main": "dist/index.js",
   "scripts": {
