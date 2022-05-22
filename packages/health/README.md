@@ -8,63 +8,70 @@ Heckle is simple service check framework that lets you verify the health of your
 
 Heckle is based on checks, which are functions that work similar to unit tests: If they throw an error, something's wrong; if they don't, everything's ok.
 
-If the `main` method in this application throws an error, the check will fail:
+If the `main()` method in this application throws an error, the check will fail:
 
 ```js
-module.exports = check("Main function runs", ()=>{
-    const result = main();
+const { check } = require('@heckle/health');
+
+module.exports = check('Main function runs', ()=>{
+    main();
 })
 ```
 
 However, you'll probably want to verify more than just that your application didn't throw. For this, you can add throws in your check as well:
 
 ```js
-module.exports = check("Main function runs", ()=>{
+const { check } = require('@heckle/health');
+
+module.exports = check('Main function runs', ()=>{
     const result = main();
     if (!result.success) throw `Main function fails: ${result.message}`;
 })
 ```
 
-You can also use any assertion library you like — including the same one you use for unit testing. Heckle will catch these errors and report them as failures.
+You can also use any assertion library you like — including the same one you use for unit testing. (Note: If you do use an assertion library in your checks, be sure it's a production `dependency`, not a `devDependency`!) Heckle will catch these errors and report them as failures.
 
 ```js
-module.exports = check("Main function runs", ()=>{
+const { check } = require('@heckle/health');
+const { expect } = require('chai');
+
+module.exports = check('Main function runs', ()=>{
     const result = main();
     expect(result.body).toBeString();
 })
 ```
 
-Your checks can do whatever you like, but the main recommended use is to invoke the service's own production HTTP endpoints — the same things real callers will use. Heckle provides a utility function `call` for this purpose.
+Your checks can do whatever you like, but a key recommended pattern is to invoke the service's own production HTTP endpoints — the same things real callers will use. Heckle provides a utility function `call` for this purpose.
 
 ```js
-const reply = await call("results/1234")
+const { call } = require('@heckle/health');
+
+const reply = await call('results/1234')
 ```
 
 You pass `call` the relative path of the endpoint, and optionally an HTTP verb (default is `GET`) and a payload.
 
-To avoid verbose and repetitive status code assertions in every check, Heckle provides the `ensure()` utility function. If the result of `call()` doesn't match the expect status code class, `ensure()` will throw.
+Before inspecting the body of the response, you'll likely want to make sure the request succeeded. To avoid verbose and repetitive status code assertions in every check, Heckle provides the `ensure()` utility function. If the result of `call()` doesn't match the expect status code class, `ensure()` will throw. You can optionally pass in a custom message that will be displayed if the assertion fails.
 
 ```js
-const reply = await call("results/1234")
-ensure(reply).successful()
+const { call, ensure } = require('@heckle/health');
+
+const reply = await call('results/1234')
+ensure(reply).successful('Result 1234 was not returned.')
 ```
 
-You can also verify that invalid inputs result in expected failures:
+So, altogether, a simple check might look like this:
 
 ```js
-const reply = await call("results/invalid-result-id!")
-ensure(reply).clientError()
-```
+const { call, check, ensure } = require('@heckle/health');
+const { expect } = require('chai');
 
-If you want to use an assertion library, but also want to directly control your errors, you can use `try`/`catch`:
+module.exports = check('Difference calculates correctly', async () => {
+  const reply = await call(`difference?a=1&b=2`);
+  ensure(reply).successful(`Difference returns ${reply.status} (1 - 2)`);
+  expect(reply.data).to.equal(-1, 'Difference calculates incorrectly (1 - 2)');
+});
 
-```js
-const reply = await call("results/2345")
-try{
-    expect(reply.data.id).toBe(2345)
-} catch (e) {
-    throw new Error(`My error message: ${e.message}`)
-}
 ```
 
 ## Health Endpoint
@@ -193,6 +200,38 @@ Health Check: http://localhost:7071/_health
 * [`@heckle/core`](https://www.npmjs.com/package/@heckle/core) — The core logic
 * [`@heckle/hosts`](https://www.npmjs.com/package/@heckle/hosts) — The service host adapters 
 
+## Additional Patterns
+
+Your checks can be as simple or complex as you like. Here are a few other techniques to consider:
+
+You can intentionally submit invalid parameters and verify that you recieve an error response code:
+
+```js
+const { call, check, ensure } = require('@heckle/health');
+
+module.exports = check('Difference rejects missing parameter', async () => {
+  const reply = await call(`difference?a=1`);
+  ensure(reply).clientError(`Difference returns ${reply.status} with missing parameter`);
+});
+
+```
+
+If you want to use an assertion library, but also want to fully control your errors, you can use `try`/`catch`:
+
+```js
+const { call, check } = require('@heckle/health');
+const { expect } = require('chai');
+
+module.exports = check('Difference calculates correctly', async () => {
+  const reply = await call(`difference?a=1&b=2`);
+  try{
+    expect(reply.data).to.equal(-1);
+  } catch (e) {
+    throw new Error(`My error message: ${e.message}`)
+  }
+});
+
+```
 
 ## Q&A
 
