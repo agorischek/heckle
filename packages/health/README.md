@@ -97,7 +97,7 @@ module.exports = {
 }
 ```
 
-Although you can define checks directly in the config file, you're encouraged to store your checks directly next to the application code they cover (e.g. `main.checks.js` directly next to `main.js`), and import them into the config file instead:
+Although you can define checks directly in the config file, you're encouraged to store your checks next to the application code they cover (e.g. `main.checks.js` as a peer of `main.js`), and import them into the config file instead:
 
 ```js
 const main = require('./main.checks.js');
@@ -107,7 +107,7 @@ module.exports = {
 }
 ```
 
-Because any code running in production is potentially dangerous, Heckle _does not_ autodiscover checks the way that unit testing frameworks typically discover tests. Instead, once a check is ready to use, you must explicitly configure it in `checks.config.js`.
+Because any code running in production is potentially dangerous, Heckle _does not_ autodiscover checks the way that unit testing frameworks typically discover tests. Rather, once a check is ready to use, you must explicitly configure it in `checks.config.js`.
 
 The `checks.config.js` file is also the place to define the root URL and any necessary parameters (e.g. authentication keys) for the `call()` function. You can hardcode these as values (but don't hardcode secrets!), or you can pull them from environment variables, separate files, etc.
 
