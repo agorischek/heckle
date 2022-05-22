@@ -5,7 +5,7 @@ import { program } from 'commander';
 import { run } from './run';
 import { exit, spinner } from './utils';
 
-export async function cli() {
+export async function cli(args?: readonly string[]) {
   const loading = spinner();
 
   async function main(name: string) {
@@ -19,7 +19,7 @@ export async function cli() {
 
   program.argument('name').action(main);
 
-  program.parseAsync();
+  program.parseAsync(args);
 }
 
-cli();
+cli(process.argv);
