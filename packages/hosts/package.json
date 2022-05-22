@@ -16,6 +16,6 @@
     "@azure/functions": "^3.0.0"
   },
   "dependencies": {
-    "@heckle/core": "^0.0.4"
+    "@heckle/core": "^0.0.10"
   }
 }

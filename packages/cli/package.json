@@ -17,7 +17,7 @@
   "author": "Alex Gorischek",
   "license": "MIT",
   "dependencies": {
-    "@heckle/core": "^0.0.7",
+    "@heckle/core": "^0.0.10",
     "chalk": "^4.1.2",
     "commander": "^9.2.0",
     "joi": "^17.6.0",
