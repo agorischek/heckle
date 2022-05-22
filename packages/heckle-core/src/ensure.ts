@@ -4,23 +4,23 @@ export function ensure(reply: AxiosResponse) {
   return {
     informational: function () {
       if (!String(reply.status).match(/^1../))
-        throw `Expected status ${reply.status} not to be Informational (1xx)`;
+        throw `Expected status ${reply.status} to be Informational (1xx)`;
     },
     successful: function () {
       if (!String(reply.status).match(/^2../))
-        throw `Expected status ${reply.status} not to be Successful (2xx)`;
+        throw `Expected status ${reply.status} to be Successful (2xx)`;
     },
     redirection: function () {
       if (!String(reply.status).match(/^3../))
-        throw `Expected status ${reply.status} not to be Redirection (3xx)`;
+        throw `Expected status ${reply.status} to be Redirection (3xx)`;
     },
     clientError: function () {
       if (!String(reply.status).match(/^4../))
-        throw `Expected status ${reply.status} not to be Client Error (4xx)`;
+        throw `Expected status ${reply.status} to be Client Error (4xx)`;
     },
     serverError: function () {
       if (!String(reply.status).match(/^5../))
-        throw `Expected status ${reply.status} not to be Server Error (5xx)`;
+        throw `Expected status ${reply.status} to be Server Error (5xx)`;
     },
   };
 }
