@@ -13,7 +13,7 @@ If the `main()` method in this application throws an error, the check will fail:
 ```js
 const { check } = require('@heckle/health');
 
-module.exports = check('Main function runs', ()=>{
+module.exports = check('Main function runs', () => {
     main();
 })
 ```
@@ -23,7 +23,7 @@ However, you'll probably want to verify more than just that your application did
 ```js
 const { check } = require('@heckle/health');
 
-module.exports = check('Main function runs', ()=>{
+module.exports = check('Main function runs', () => {
     const result = main();
     if (!result.success) throw `Main function fails: ${result.message}`;
 })
@@ -35,7 +35,7 @@ You can also use any assertion library you like — including the same one you u
 const { check } = require('@heckle/health');
 const { expect } = require('chai');
 
-module.exports = check('Main function runs', ()=>{
+module.exports = check('Main function runs', () => {
     const result = main();
     expect(result.body).toBeString();
 })
@@ -79,7 +79,7 @@ module.exports = check('Difference calculates correctly', async () => {
 Unlike unit tests, which are executed directly in your development environment, Heckle checks are exposed via an HTTP endpoint. This endpoint can be called wherever your application is running, including locally on a development machine, on a build server, in a test environment, or in production. This endpoint typically has the word "health" in it, such as:
 
 ```sh
-https://my-cool-service.example.com/_health
+https://my-cool-service.example.org/_health
 ```
 
 Checks are defined via the `checks.config.js` file:
@@ -159,7 +159,7 @@ To manually check the health of your service — whether running locally, in a t
 ```js
 module.exports = {
   targets: {
-    prod:  'https://example.org/_health/',
+    prod:  'https://my-cool-service.example.org/_health',
     local: 'http://localhost:7071/_health',
   },
 };
@@ -183,7 +183,7 @@ npm run health prod
 You'll get a print-out of all the checks run and whether they're healthy.
 
 ```sh
-Health Check: http://localhost:7071/_health
+Health Check: https://my-cool-service.example.org/_health
 
 1 out of 4 checks failed
 
