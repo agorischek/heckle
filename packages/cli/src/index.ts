@@ -5,17 +5,21 @@ import { program } from 'commander';
 import { run } from './run';
 import { exit, spinner } from './utils';
 
-const loading = spinner();
+export async function cli() {
+  const loading = spinner();
 
-async function main(name: string) {
-  try {
-    await run(name, loading);
-  } catch (error) {
-    loading.stop();
-    exit(error);
+  async function main(name: string) {
+    try {
+      await run(name, loading);
+    } catch (error) {
+      loading.stop();
+      exit(error);
+    }
   }
+
+  program.argument('name').action(main);
+
+  program.parseAsync();
 }
 
-program.argument('name').action(main);
-
-program.parseAsync();
+cli();

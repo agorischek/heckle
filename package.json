@@ -7,7 +7,7 @@
   "author": "Alex Gorischek",
   "license": "MIT",
   "scripts": {
-    "build": "npm run build --workspace packages/heckle",
+    "build": "npm run build --workspace packages/health",
     "lint": "npm run lint --workspaces --if-present",
     "publish:dry": "npm publish --workspaces --dry-run",
     "test": "npm run test --workspaces --if-present"

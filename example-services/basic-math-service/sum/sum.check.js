@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { check, call, ensure } = require('@heckle/heckle');
+const { check, call, ensure } = require('@heckle/health');
 const { expect } = require('chai');
 
 module.exports = check('Sum calculates correctly', async () => {

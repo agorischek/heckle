@@ -6,4 +6,4 @@ export * from './health';
 export * from './run';
 export * from './Target';
 
-export { HealthSummary } from './types';
+export { HealthCheckResult, HealthSummary } from './types';

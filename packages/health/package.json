@@ -10,6 +10,9 @@
   },
   "author": "Alex Gorischek",
   "license": "MIT",
+  "bin": {
+    "heckle": "dist/cli.js"
+  },
   "workspaces": [
     "packages/heckle"
   ]

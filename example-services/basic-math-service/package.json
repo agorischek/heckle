@@ -9,8 +9,7 @@
   "author": "Alex Gorischek",
   "private": true,
   "dependencies": {
-    "@heckle/heckle": "^0.0.2",
-    "@heckle/hosts": "^0.0.2",
+    "@heckle/health": "^0.0.3",
     "chai": "^4.3.6"
   }
 }

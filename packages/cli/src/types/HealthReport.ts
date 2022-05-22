@@ -1,4 +1,4 @@
-import { HealthCheckResult, HealthSummary } from '@heckle/health/src/types';
+import { HealthCheckResult, HealthSummary } from '@heckle/core';
 
 export class HealthReport {
   count: number;
