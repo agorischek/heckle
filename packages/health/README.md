@@ -85,41 +85,45 @@ https://my-cool-service.example.com/_health
 Checks are defined via the `checks.config.js` file:
 
 ```js
+const { check } = require('@heckle/health');
+const main = require('./main.js');
+
 module.exports = {
-  checks: { difference, product, quotient, sum },
+  checks: { 
+    main: check('Main method works', () => {
+      main();
+    })
+  },
 }
 ```
 
-Although you can define checks directly in the config file, you're encouraged to store your checks directly next to the application code they cover (e.g. `my-method.checks.js`), and import them into the config file instead:
+Although you can define checks directly in the config file, you're encouraged to store your checks directly next to the application code they cover (e.g. `main.checks.js` directly next to `main.js`), and import them into the config file instead:
 
 ```js
-import myMethod from '../my-method.checks'
+const main = require('./main.checks.js');
 
 module.exports = {
-  checks: { myMethod },
+  checks: { main },
 }
 ```
 
-Because any code running in production is potentially dangerous, Heckle _does not_ autodiscover checks that way that unit testing frameworks typically discover tests. Instead, once a check is ready to use, you must explicitly configure how it's exposed (via `checks.config.js`).
+Because any code running in production is potentially dangerous, Heckle _does not_ autodiscover checks the way that unit testing frameworks typically discover tests. Instead, once a check is ready to use, you must explicitly configure it in `checks.config.js`.
 
-The `checks.config.js` file is also the place to define the root URL and any necessary parameters (e.g. authentication keys) for the `call()` function. You can hardcode these as keys, or you can pull them from environment variables, separate files, etc.
+The `checks.config.js` file is also the place to define the root URL and any necessary parameters (e.g. authentication keys) for the `call()` function. You can hardcode these as values (but don't hardcode secrets!), or you can pull them from environment variables, separate files, etc.
 
 ```js
+const main = require('./main.checks.js');
+
 module.exports = {
   root: process.env.SELF_URL,
   params: {
     code: process.env.SELF_KEY,
   },
-  checks: {
-    difference,
-    product,
-    quotient,
-    sum,
-  },
+  checks: { main },
 };
 ```
 
-To be able to call your health endpoint, you'll need to expose an HTTP route.
+To be able to call your health endpoint, you'll need to expose an HTTP route. How you do this will depend on the server technology you're using, but it might look something like:
 
 ```js
 // my-health-function.js
@@ -150,7 +154,7 @@ Then, make sure to match anything under your endpoint in `function.json`:
 
 ## CLI
 
-To manually check the health of your service — whether running locally, in a test environment, in production, etc. — use the Heckle CLI. Targets are defined in a `heckle.config.js` file:
+To manually check the health of your service — whether running locally, in a test environment, in production, etc. — use the Heckle CLI. Define your targets in a `heckle.config.js` file:
 
 ```js
 module.exports = {
@@ -161,7 +165,7 @@ module.exports = {
 };
 ```
 
-Add a script in your `package.json`:
+Then add a script in your `package.json`:
 
 ```jsonc
   "scripts": {
@@ -202,7 +206,7 @@ Health Check: http://localhost:7071/_health
 
 ## Additional Patterns
 
-Your checks can be as simple or complex as you like. Here are a few other techniques to consider:
+Your checks can be as simple or complex as you like — Below are a few other techniques to consider.
 
 You can intentionally submit invalid parameters and verify that you recieve an error response code:
 
@@ -237,7 +241,7 @@ module.exports = check('Difference calculates correctly', async () => {
 
 ### Do health checks replace my unit tests?
 
-Definitely not! Health checks require booting your application. Unit tests should run directly against your source or your build output. Both are valuable and complementary quality assurance strategies.
+Definitely not! Health checks require booting your application. Unit tests should run directly against your source or your build output. Both unit tests and service health checks are valuable and complementary quality assurance strategies.
 
 ### Do health checks replace monitoring user traffic?
 
@@ -245,5 +249,5 @@ Nope! Users will always find ways to interact with your service that you didn't 
 
 ### Isn't running tests in production dangerous?
 
-Depends on what they do! Checks are completely in your control, and it's your responsibility to make sure they're safe. For example, you should be careful to ensure they don't add undue traffic load and don't corrupt production data.
+Maybe... Depends on what they do! Checks are completely in your control, and it's your responsibility to make sure they're safe. For example, you should be careful not to add undue traffic load or corrupt production data.
 
