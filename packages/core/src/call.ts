@@ -22,6 +22,5 @@ export async function call(route: string, method = 'get', payload: unknown) {
       return Boolean(status);
     },
   });
-  console.log(response);
   return response;
 }
