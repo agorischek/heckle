@@ -1,6 +1,6 @@
 {
   "name": "@heckle/health",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Simple service health checks",
   "main": "dist/index.js",
   "scripts": {
@@ -15,5 +15,10 @@
   },
   "workspaces": [
     "packages/heckle"
-  ]
+  ],
+  "dependencies": {
+    "@heckle/cli": "^0.0.3",
+    "@heckle/core": "^0.0.4",
+    "@heckle/hosts": "^0.0.3"
+  }
 }

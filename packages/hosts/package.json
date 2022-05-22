@@ -1,6 +1,6 @@
 {
   "name": "@heckle/hosts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Service host adapters for Heckle",
   "main": "dist/index.js",
   "scripts": {
@@ -12,5 +12,8 @@
   "license": "MIT",
   "devDependencies": {
     "@azure/functions": "^3.0.0"
+  },
+  "dependencies": {
+    "@heckle/core": "^0.0.4"
   }
 }

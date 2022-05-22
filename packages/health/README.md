@@ -11,7 +11,7 @@ Heckle is based on checks, which are functions that work similar to unit tests: 
 If the `main` method in this application throws an error, the check will fail:
 
 ```js
-export default check("Main function runs", ()=>{
+module.exports = check("Main function runs", ()=>{
     const result = main();
 })
 ```
@@ -19,7 +19,7 @@ export default check("Main function runs", ()=>{
 However, you'll probably want to verify more than just that your application didn't throw. For this, you can add throws in your check as well:
 
 ```js
-export default check("Main function runs", ()=>{
+module.exports = check("Main function runs", ()=>{
     const result = main();
     if (!result.success) throw `Main function fails: ${result.message}`;
 })
@@ -28,7 +28,7 @@ export default check("Main function runs", ()=>{
 You can also use any assertion library you like — including the same one you use for unit testing. Heckle will catch these errors and report them as failures.
 
 ```js
-export default check("Main function runs", ()=>{
+module.exports = check("Main function runs", ()=>{
     const result = main();
     expect(result.body).toBeString();
 })
@@ -146,7 +146,7 @@ Then, make sure to match anything under your endpoint in `function.json`:
 To manually check the health of your service — whether running locally, in a test environment, in production, etc. — use the Heckle CLI. Targets are defined in a `heckle.config.js` file:
 
 ```js
-export default {
+module.exports = {
   targets: {
     prod:  'https://example.org/_health/',
     local: 'http://localhost:7071/_health',
@@ -154,10 +154,19 @@ export default {
 };
 ```
 
-Once your targets are defined, just call `heckle` with the target name.
+Add a script in your `package.json`:
+
+```jsonc
+  "scripts": {
+    // ...
+    "health": "heckle"
+  },
+```
+
+Once your targets and script are defined, just call the script with the target name.
 
 ```js
-heckle prod
+npm run health prod
 ```
 
 You'll get a print-out of all the checks run and whether they're healthy.
