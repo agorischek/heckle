@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "description": "Heckle monorepo",
-  "main": "index.js",
+  "homepage": "https://www.npmjs.com/package/@heckle/health",
+  "repository": "https://agorischek@github.com/agorischek/heckle.git",
   "author": "Alex Gorischek",
   "license": "MIT",
   "scripts": {
