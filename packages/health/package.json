@@ -1,6 +1,6 @@
 {
-  "name": "@heckle/heckle",
-  "version": "0.0.2",
+  "name": "@heckle/health",
+  "version": "0.0.3",
   "description": "Simple service health checks",
   "main": "dist/index.js",
   "scripts": {

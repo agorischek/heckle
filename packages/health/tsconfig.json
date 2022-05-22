@@ -6,9 +6,9 @@
     "composite": true
   },
   "references": [
-    { "path": "../heckle-cli" },
-    { "path": "../heckle-core" },
-    { "path": "../heckle-hosts" }
+    { "path": "../cli" },
+    { "path": "../core" },
+    { "path": "../hosts" }
   ],
   "files": ["src/index.ts"],
   "include": ["src"]

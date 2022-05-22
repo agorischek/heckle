@@ -1,6 +1,6 @@
 {
   "name": "@heckle/hosts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Service host adapters for Heckle",
   "main": "dist/index.js",
   "scripts": {

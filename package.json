@@ -13,10 +13,10 @@
     "test": "npm run test --workspaces --if-present"
   },
   "workspaces": [
-    "packages/heckle",
-    "packages/heckle-cli",
-    "packages/heckle-core",
-    "packages/heckle-hosts",
+    "packages/health",
+    "packages/cli",
+    "packages/core",
+    "packages/hosts",
     "example-services/basic-math-service"
   ],
   "devDependencies": {

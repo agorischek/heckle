@@ -11,10 +11,10 @@
     "forceConsistentCasingInFileNames": true
   },
   "references": [
-    { "path": "./packages/heckle" },
-    { "path": "./packages/heckle-cli" },
-    { "path": "./packages/heckle-core" },
-    { "path": "./packages/heckle-hosts" }
+    { "path": "./packages/health" },
+    { "path": "./packages/cli" },
+    { "path": "./packages/core" },
+    { "path": "./packages/hosts" }
   ],
   "files": []
 }
