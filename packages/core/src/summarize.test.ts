@@ -7,10 +7,12 @@ test('Should summarize a healthy result set', async () => {
     a: {
       healthy: true,
       description: 'A works',
+      duration: 500,
     },
     b: {
       healthy: true,
       description: 'B works',
+      duration: 400,
     },
   };
   const summary = summarize(resultSet, name);
@@ -26,10 +28,12 @@ test('Should summarize an unhealthy result set', async () => {
     a: {
       healthy: true,
       description: 'A works',
+      duration: 300,
     },
     b: {
       healthy: false,
       description: 'B works',
+      duration: 200,
       error: "B doesn't work",
     },
   };

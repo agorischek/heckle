@@ -11,7 +11,7 @@
     "build": "npm run build --workspace packages/health",
     "lint": "npm run lint --workspaces --if-present",
     "publish:dry": "npm publish --workspaces --dry-run",
-    "test": "npm run test --workspaces --if-present"
+    "test": "jest"
   },
   "workspaces": [
     "packages/health",
