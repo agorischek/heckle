@@ -4,6 +4,6 @@ export type HealthSummary = {
   name?: string;
   healthy: boolean;
   errors?: string[];
-  duration?: number;
+  duration: number;
   checks: HealthCheckResultSet;
 };

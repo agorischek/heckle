@@ -6,7 +6,7 @@ import {
 
 export function summarize(
   results: HealthCheckResultSet,
-  duration?: number,
+  duration: number,
   service?: string
 ): HealthSummary {
   function extractErrors(acc: string[], result: HealthCheckResult) {

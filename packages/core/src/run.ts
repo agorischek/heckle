@@ -9,7 +9,7 @@ export async function run(config: Config, id?: string) {
   const time = timer();
   const results = await evaluate(checks, id);
   const duration = time();
-
+  console.log(duration);
   const summary = summarize(results, duration, name);
 
   return summary;

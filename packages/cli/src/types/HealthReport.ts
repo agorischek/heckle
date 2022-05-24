@@ -2,11 +2,13 @@ import { HealthCheckResult, HealthSummary } from '@heckle/core';
 
 export class HealthReport {
   count: number;
+  duration: number;
   healthy: { count: number; checks: { [key: string]: HealthCheckResult } };
   unhealthy: { count: number; checks: { [key: string]: HealthCheckResult } };
 
   constructor(summary: HealthSummary) {
     this.count = 0;
+    this.duration = summary.duration;
     this.healthy = { count: 0, checks: {} };
     this.unhealthy = { count: 0, checks: {} };
 
