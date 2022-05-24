@@ -1,0 +1,18 @@
+{
+  "name": "@heckle/monitors",
+  "version": "0.0.1",
+  "description": "Monitor adapters for Heckle",
+  "homepage": "https://www.npmjs.com/package/@heckle/health",
+  "repository": "https://agorischek@github.com/agorischek/heckle.git",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "lint": "eslint .",
+    "test": "jest --config ../../jest.config.js"
+  },
+  "author": "Alex Gorischek",
+  "license": "MIT",
+  "dependencies": {
+    "@heckle/core": "^0.0.10"
+  }
+}
