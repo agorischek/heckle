@@ -14,7 +14,8 @@
     { "path": "./packages/health" },
     { "path": "./packages/cli" },
     { "path": "./packages/core" },
-    { "path": "./packages/hosts" }
+    { "path": "./packages/hosts" },
+    { "path": "./packages/monitors" }
   ],
   "files": []
 }

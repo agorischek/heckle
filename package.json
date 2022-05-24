@@ -18,6 +18,7 @@
     "packages/cli",
     "packages/core",
     "packages/hosts",
+    "packages/monitors",
     "example-services/basic-math-service"
   ],
   "devDependencies": {
