@@ -1,4 +1,4 @@
-import { Timer } from './Timer';
+import { timer } from './timer';
 import { HealthCheck, HealthCheckFunction } from './types';
 
 export function check(
@@ -6,17 +6,17 @@ export function check(
   fn: HealthCheckFunction
 ): HealthCheck {
   const healthCheck = async () => {
-    const timer = new Timer();
+    const time = timer();
     try {
       await fn();
-      const duration = timer.stop();
+      const duration = time();
       return {
         healthy: true,
         duration,
         description: description,
       };
     } catch (error) {
-      const duration = timer.stop();
+      const duration = time();
       const errorMessage =
         typeof error === 'string'
           ? error
