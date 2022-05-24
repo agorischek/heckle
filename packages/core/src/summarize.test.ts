@@ -3,6 +3,7 @@ import { HealthCheckResultSet } from './types';
 
 test('Should summarize a healthy result set', async () => {
   const name = 'My Service';
+  const duration = 300;
   const resultSet: HealthCheckResultSet = {
     a: {
       healthy: true,
@@ -15,7 +16,7 @@ test('Should summarize a healthy result set', async () => {
       duration: 400,
     },
   };
-  const summary = summarize(resultSet, name);
+  const summary = summarize(resultSet, duration, name);
 
   expect(summary.name).toBe('My Service');
   expect(summary.healthy).toBe(true);
@@ -24,6 +25,7 @@ test('Should summarize a healthy result set', async () => {
 
 test('Should summarize an unhealthy result set', async () => {
   const name = 'My Service';
+  const duration = 300;
   const resultSet: HealthCheckResultSet = {
     a: {
       healthy: true,
@@ -37,7 +39,7 @@ test('Should summarize an unhealthy result set', async () => {
       error: "B doesn't work",
     },
   };
-  const summary = summarize(resultSet, name);
+  const summary = summarize(resultSet, duration, name);
 
   expect(summary.name).toBe('My Service');
   expect(summary.healthy).toBe(false);
