@@ -3,6 +3,7 @@ const secrets = require('./secrets.json');
 
 module.exports = {
   location: 'Seattle, WA',
+  prefixNames: false,
   suite: {
     display: 'Health checks run',
   },
