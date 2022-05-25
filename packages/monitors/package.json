@@ -1,6 +1,6 @@
 {
   "name": "@heckle/monitors",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Monitor adapters for Heckle",
   "homepage": "https://www.npmjs.com/package/@heckle/health",
   "repository": "https://agorischek@github.com/agorischek/heckle.git",

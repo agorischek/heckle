@@ -1,6 +1,6 @@
 {
   "name": "@heckle/hosts",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Service host adapters for Heckle",
   "homepage": "https://www.npmjs.com/package/@heckle/health",
   "repository": "https://agorischek@github.com/agorischek/heckle.git",
