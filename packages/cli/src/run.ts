@@ -6,7 +6,6 @@ import { Target } from '@heckle/core';
 import { printIntro, printNewline, printReport } from './printers';
 import { HealthReport } from './types';
 import { isValidRunConfig } from './schemas';
-import { isValidHealthSummary } from './schemas/healthSummarySchema';
 
 export async function run(name: string, loading: Ora) {
   printNewline();
@@ -28,8 +27,8 @@ export async function run(name: string, loading: Ora) {
 
   loading.start();
 
-  const response = await target.provoke(operation);
-  const summary = isValidHealthSummary(response) ? response : undefined;
+  const summary = await target.provoke(operation);
+
   if (!summary) {
     throw new Error('Target service not found!');
   }

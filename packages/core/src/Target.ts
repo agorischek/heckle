@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { HealthSummary } from '../dist';
+
+import { isValidHealthSummary } from './schemas';
 
 import { TargetConfig } from './types/TargetConfig';
 
@@ -25,7 +28,7 @@ export class Target {
     this.displayEndpoint = this.endpoint.match(/^([^?]*)/)?.[1];
   }
 
-  async provoke(action?: string, id?: string) {
+  async provoke(action?: string, id?: string): Promise<HealthSummary> {
     const url = this.buildUrl(action, id);
     const retort = await axios.get(url, {
       validateStatus: function (status: number) {
@@ -33,6 +36,12 @@ export class Target {
       },
     });
 
+    if (!isValidHealthSummary(retort.data))
+      throw new Error(
+        `Service did not return a valid health summary: ${JSON.stringify(
+          retort
+        )}`
+      );
     return retort.data;
   }
 
