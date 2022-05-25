@@ -1,0 +1,14 @@
+{
+  "name": "monitor-service",
+  "version": "0.0.1",
+  "description": "Example monitor service for Heckle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Gorischek",
+  "license": "MIT",
+  "dependencies": {
+    "@heckle/health": "^0.0.14"
+  }
+}
