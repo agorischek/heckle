@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { HealthSummary } from '../dist';
+import { HealthSummary } from './types';
 
 import { isValidHealthSummary } from './schemas';
 

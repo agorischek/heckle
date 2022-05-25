@@ -1,4 +1,4 @@
-import { TargetConfig } from '@heckle/core/src/types';
+import { TargetConfig } from '@heckle/core';
 import Joi from 'joi';
 
 const { alternatives, object, string } = Joi.types();

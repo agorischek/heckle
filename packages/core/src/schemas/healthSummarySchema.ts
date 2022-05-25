@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-import { HealthSummary } from '@heckle/core';
+import { HealthSummary } from '../types';
 
 const { array, boolean, number, object, string } = Joi.types();
 
