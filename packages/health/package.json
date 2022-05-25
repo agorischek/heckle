@@ -1,6 +1,6 @@
 {
   "name": "@heckle/health",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Simple service health checks",
   "homepage": "https://www.npmjs.com/package/@heckle/health",
   "repository": "https://agorischek@github.com/agorischek/heckle.git",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@heckle/cli": "^0.0.8",
     "@heckle/core": "^0.0.10",
-    "@heckle/hosts": "^0.0.8"
+    "@heckle/hosts": "^0.0.8",
+    "@heckle/monitors": "^0.0.2"
   }
 }
