@@ -196,9 +196,9 @@ Health Check: https://my-cool-service.example.org/_health
 × Difference calculates incorrectly (1 - 2): expected 3 to equal -1 (difference)
 ```
 
-### Monitor Services
+## Monitoring
 
-In addition to manually checking service health via CLI, you may also want to automate your health checks and write the results to a telemetry or monitoring service. For this purpose, Heckle provides monitor adapters.
+In addition to manually checking service health via CLI, you may also want to automate your health checks and push the results to a telemetry or monitoring service. For this, Heckle provides a monitoring client SDK.
 
 Monitoring targets are defined in a `monitor.config.js` file:
 
@@ -217,9 +217,9 @@ module.exports = {
   },
 };
 ```
-Unlike the `heckle.config.js` CLI config, which should have one target per environment that a service can run in, the `monitor.config.js` file should have one target per service that can run in the same environment.
+Unlike the `heckle.config.js` CLI config, which should have one target per environment that a service can run in, the `monitor.config.js` file should have one target per service that can run in an environment.
 
-If you're logging to App Insights, Heckle provides an adapter for that:
+If you're logging to App Insights, such as via a timer trigger Azure Function, Heckle provides an adapter for that:
 
 ```js
 const monitor = require("@heckle/monitors").appInsights;
