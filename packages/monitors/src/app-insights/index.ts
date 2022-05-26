@@ -18,7 +18,13 @@ export async function monitor(context?: Context) {
     );
 
     for await (const targetId of targetIds) {
-      await monitorTarget(monitorConfig, targetId, print);
+      try {
+        await monitorTarget(monitorConfig, targetId, print);
+      } catch (error) {
+        print.log(
+          `Couldn't complete monitoring of ${monitorConfig.targets[targetId].name}: ${error}`
+        );
+      }
     }
 
     print.log('Finished provoking targets; exiting.');
