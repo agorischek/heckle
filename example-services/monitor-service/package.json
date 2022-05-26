@@ -1,0 +1,14 @@
+{
+  "name": "monitor-service",
+  "version": "0.0.2",
+  "description": "Example monitor service for Heckle",
+  "main": "index.js",
+  "scripts": {
+    "start": "func start --port=7072"
+  },
+  "author": "Alex Gorischek",
+  "license": "MIT",
+  "dependencies": {
+    "@heckle/health": "^0.0.16"
+  }
+}
