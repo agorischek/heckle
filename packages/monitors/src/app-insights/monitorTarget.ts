@@ -5,27 +5,38 @@ import { MonitorConfig } from '../types';
 import { generateSuiteResult } from './generateSuiteResult';
 import { transformResult } from './transformResult';
 import { flush } from './flush';
+import { Printer } from '../utils';
 
 export async function monitorTarget(
   monitorConfig: MonitorConfig,
-  targetId: string
+  targetId: string,
+  print: Printer
 ) {
-  const targetConfig = monitorConfig.targets[targetId];
-  const target = new Target(targetConfig);
+  try {
+    const targetConfig = monitorConfig.targets[targetId];
+    const target = new Target(targetConfig);
+    print.log(`Provoking target ${target.name} (${target.endpoint})...`);
 
-  const telemetry = new TelemetryClient(targetConfig.telemetryKey);
+    const telemetry = new TelemetryClient(targetConfig.telemetryKey);
 
-  const summary = await target.provoke();
+    const summary = await target.provoke();
 
-  const suiteResult = generateSuiteResult(summary, monitorConfig, targetId);
+    print.log(`Recieved health summary: ${JSON.stringify(summary)}`);
 
-  const availabilityResults = [suiteResult].concat(
-    Object.values(summary.checks).map((checkResult) =>
-      transformResult(checkResult, monitorConfig, targetId)
-    )
-  );
+    const suiteResult = generateSuiteResult(summary, monitorConfig, targetId);
 
-  availabilityResults.forEach((result) => telemetry.trackAvailability(result));
+    const availabilityResults = [suiteResult].concat(
+      Object.values(summary.checks).map((checkResult) =>
+        transformResult(checkResult, monitorConfig, targetId)
+      )
+    );
 
-  await flush(telemetry);
+    availabilityResults.forEach((result) =>
+      telemetry.trackAvailability(result)
+    );
+
+    await flush(telemetry, print);
+  } catch (error) {
+    print.log(`Couldn't complete monitoring: ${error}`);
+  }
 }

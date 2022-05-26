@@ -1,12 +1,13 @@
 {
   "name": "@heckle/cli",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "CLI for Heckle",
   "homepage": "https://www.npmjs.com/package/@heckle/health",
   "repository": "https://agorischek@github.com/agorischek/heckle.git",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc --build",
+    "build": "npm run clean && tsc --build --force",
+    "clean": "rimraf dist",
     "lint": "eslint .",
     "start": "npx ts-node -r tsconfig-paths/register ./src/index.ts",
     "test": "jest --config ../../jest.config.js"
@@ -17,7 +18,7 @@
   "author": "Alex Gorischek",
   "license": "MIT",
   "dependencies": {
-    "@heckle/core": "^0.0.10",
+    "@heckle/core": "~0.0.12",
     "chalk": "^4.1.2",
     "commander": "^9.2.0",
     "joi": "^17.6.0",

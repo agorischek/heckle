@@ -35,12 +35,9 @@ export class Target {
         return Boolean(status);
       },
     });
-
     if (!isValidHealthSummary(retort.data))
       throw new Error(
-        `Service did not return a valid health summary: ${JSON.stringify(
-          retort
-        )}`
+        `Service did not return a valid health summary: ${retort.data}`
       );
     return retort.data;
   }

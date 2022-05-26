@@ -11,6 +11,7 @@ export function generateSuiteResult(
 ): AvailabilityTelemetry {
   const target = monitorConfig.targets[targetId];
   const description = monitorConfig.suite.display || 'Health checks complete';
+
   const checkCount = Object.keys(summary.checks).length;
   const testName = monitorConfig.prefixNames
     ? `${target.name}: ${description}`

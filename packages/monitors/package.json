@@ -1,6 +1,6 @@
 {
   "name": "@heckle/monitors",
-  "version": "0.0.2",
+  "version": "0.0.8",
   "description": "Monitor adapters for Heckle",
   "homepage": "https://www.npmjs.com/package/@heckle/health",
   "repository": "https://agorischek@github.com/agorischek/heckle.git",
@@ -14,7 +14,7 @@
   "author": "Alex Gorischek",
   "license": "MIT",
   "dependencies": {
-    "@heckle/core": "^0.0.10",
+    "@heckle/core": "~0.0.12",
     "applicationinsights": "^2.3.3",
     "uuid": "^8.3.2"
   },

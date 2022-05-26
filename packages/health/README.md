@@ -196,6 +196,39 @@ Health Check: https://my-cool-service.example.org/_health
 × Difference calculates incorrectly (1 - 2): expected 3 to equal -1 (difference)
 ```
 
+### Monitor Services
+
+In addition to manually checking service health via CLI, you may also want to automate your health checks and write the results to a telemetry or monitoring service. For this purpose, Heckle provides monitor adapters.
+
+Monitoring targets are defined in a `monitor.config.js` file:
+
+```js
+module.exports = {
+  location: "Seattle, WA",
+  targets: {
+    basicMathService: {
+      name: "Basic Math Service",
+      telemetryKey: process.env.TELEMETRY_KEY,
+      endpoint: "https://basic-math-service.azurewebsites.net/_health/",
+      params: {
+        code: process.env.SERVICE_KEY,
+      },
+    },
+  },
+};
+```
+Unlike the `heckle.config.js` CLI config, which should have one target per environment that a service can run in, the `monitor.config.js` file should have one target per service that can run in the same environment.
+
+If you're logging to App Insights, Heckle provides an adapter for that:
+
+```js
+const monitor = require("@heckle/monitors").appInsights;
+
+module.exports = async function (context) {
+  await monitor(context);
+};
+```
+
 ## Components
 
 `@heckle/health` is the main Heckle component, which packages up functionality from:
@@ -203,6 +236,9 @@ Health Check: https://my-cool-service.example.org/_health
 * [`@heckle/cli`](https://www.npmjs.com/package/@heckle/cli) — The command-line interface:
 * [`@heckle/core`](https://www.npmjs.com/package/@heckle/core) — The core logic
 * [`@heckle/hosts`](https://www.npmjs.com/package/@heckle/hosts) — The service host adapters 
+* [`@heckle/monitors`](https://www.npmjs.com/package/@heckle/hosts) — The monitoring telemetry adapters 
+
+You can import the `health` package to get everything, or you can choose individual packages for specific contexts.
 
 ## Additional Patterns
 

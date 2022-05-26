@@ -1,12 +1,13 @@
 {
   "name": "@heckle/hosts",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "Service host adapters for Heckle",
   "homepage": "https://www.npmjs.com/package/@heckle/health",
   "repository": "https://agorischek@github.com/agorischek/heckle.git",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc --build",
+    "build": "npm run clean && tsc --build --force",
+    "clean": "rimraf dist",
     "lint": "eslint .",
     "test": "jest --config ../../jest.config.js"
   },
@@ -16,6 +17,6 @@
     "@azure/functions": "^3.0.0"
   },
   "dependencies": {
-    "@heckle/core": "^0.0.10"
+    "@heckle/core": "~0.0.10"
   }
 }
