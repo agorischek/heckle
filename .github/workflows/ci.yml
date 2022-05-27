@@ -22,6 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm --version
+      - run: npm run cli:init
       - run: npm install --global npm@latest
       - run: npm --version
       - run: npm ci
