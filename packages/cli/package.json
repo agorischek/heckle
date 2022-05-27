@@ -9,6 +9,7 @@
     "build": "npm run clean && tsc --build --force",
     "clean": "rimraf dist",
     "lint": "eslint .",
+    "permissions": "chmod +x dist/index.js",
     "start": "npx ts-node -r tsconfig-paths/register ./src/index.ts",
     "test": "jest --config ../../jest.config.js"
   },
@@ -18,7 +19,7 @@
   "author": "Alex Gorischek",
   "license": "MIT",
   "dependencies": {
-    "@heckle/core": "~0.0.12",
+    "@heckle/core": "~0.0.17",
     "chalk": "^4.1.2",
     "commander": "^9.2.0",
     "joi": "^17.6.0",
