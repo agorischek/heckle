@@ -21,6 +21,7 @@
     "packages/monitors",
     "packages/cli",
     "packages/health",
+    "example-services/basic-math-service",
     "example-services/monitor-service"
   ],
   "devDependencies": {
