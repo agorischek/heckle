@@ -4,3 +4,4 @@ dist
 secrets.json
 .hecklerc
 .DS_Store
+coverage
