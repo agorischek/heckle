@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run build --workspaces --if-present",
+    "build:clean": "npm run build:clean --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "publish": "npm publish --workspaces",
     "publish:dry": "npm publish --workspaces --dry-run",
