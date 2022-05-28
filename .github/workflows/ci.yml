@@ -25,7 +25,7 @@ jobs:
       - run: npm install --global npm@latest
       - run: npm --version
       - run: npm ci --workspace=packages/cli
-      - run: npm run build --worksace=packages/cli
+      - run: npm run build --workspace=packages/cli
       - run: npm ci
       - run: npm run build
       - run: npm run test
