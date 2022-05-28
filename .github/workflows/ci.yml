@@ -24,7 +24,7 @@ jobs:
       # - run: npm --version
       # - run: npm install --global npm@latest
       # - run: npm --version
-      - run: npm i @heckle/health
+      - run: npm i @heckle/health@0.0.19
       # - run: npm i --only=dev
       # - run: npm ci --workspace=packages/core
       # - run: npm run build --workspace=packages/core
