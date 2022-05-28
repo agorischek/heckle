@@ -22,11 +22,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm --version
-      - run: mkdir ${{ github.workspace }}/node_modules/@heckle/health/dist
-      - run: touch ${{ github.workspace }}/node_modules/@heckle/health/dist/cli.js
       - run: npm install --global npm@latest
       - run: npm --version
-      - run: npm ci
+      - run: npm ci --no-bin-links
+      - run: npm link typescript
       - run: npm run build
+      - run: npm ci
       - run: npm run test
       - run: npm run lint
