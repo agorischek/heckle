@@ -4,6 +4,7 @@ module.exports = {
   testPathIgnorePatterns: ['dist'],
   coveragePathIgnorePatterns: ['node_modules', 'dist'],
   collectCoverageFrom: ['packages/**/*.ts'],
+  collectCoverage: true,
   coverageThreshold: {
     global: {
       branches: 90,
