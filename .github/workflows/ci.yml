@@ -24,9 +24,9 @@ jobs:
       - run: npm --version
       - run: npm install --global npm@latest
       - run: npm --version
-      - run: npm ci --no-bin-links
-      - run: npm link typescript
-      - run: npm run build
+      - run: npm ci --workspace=packages/cli
+      - run: npm run build --worksace=packages/cli
       - run: npm ci
+      - run: npm run build
       - run: npm run test
       - run: npm run lint
