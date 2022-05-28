@@ -6,7 +6,8 @@
   "repository": "https://agorischek@github.com/agorischek/heckle.git",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run clean && tsc --build --force",
+    "build": "tsc --build",
+    "build:clean": "npm run clean && tsc --build --force",
     "clean": "rimraf dist",
     "lint": "eslint .",
     "test": "jest --config ../../jest.config.js"

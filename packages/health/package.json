@@ -1,12 +1,13 @@
 {
   "name": "@heckle/health",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Simple service health checks",
   "homepage": "https://www.npmjs.com/package/@heckle/health",
   "repository": "https://agorischek@github.com/agorischek/heckle.git",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run clean && tsc --build --force",
+    "build": "tsc --build",
+    "build:clean": "npm run clean && tsc --build --force",
     "clean": "rimraf dist",
     "lint": "eslint .",
     "test": "jest --config ../../jest.config.js"

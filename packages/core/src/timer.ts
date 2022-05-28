@@ -1,9 +1,7 @@
-import { performance } from 'perf_hooks';
-
 export function timer() {
-  const start = performance.now();
+  const start = Date.now();
   return function () {
-    const duration = Math.round(performance.now() - start);
+    const duration = Math.round(Date.now() - start);
     return duration;
   };
 }
