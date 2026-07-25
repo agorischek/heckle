@@ -24,6 +24,9 @@
     "example-services/basic-math-service",
     "example-services/monitor-service"
   ],
+  "overrides": {
+    "@babel/traverse": "7.23.2"
+  },
   "devDependencies": {
     "@types/node": "^17.0.35",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
